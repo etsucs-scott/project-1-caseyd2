@@ -7,8 +7,10 @@ using AdventureGame.Core.Characters;
 
 namespace AdventureGame.Core.Items;
 
+// represents a weapon that increases the attack options
 public class Weapon : Item
 {
+    // Extra value the weapon can provide
     public int AttackModifier;
 
     // Creates a weapon and sets how much damage it gives
@@ -18,9 +20,10 @@ public class Weapon : Item
         AttackModifier = attackModifier;
     }
 
+    // Adds weapon to players inventory
     public override void Apply(Player player)
 
     {
-        player.AttackPower += AttackModifier;
+        player.AddWeapon(this);
     }
 }

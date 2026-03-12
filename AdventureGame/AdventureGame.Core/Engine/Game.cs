@@ -30,7 +30,11 @@ namespace AdventureGame.Core.Engine
 
         private const int BASE_DAMAGE = 10;
         private const int POTION_HEAL = 20;
+
+        // gets the players current row in the maze
         public int PlayerRow => playerRow;
+
+        // gets the players current column in the maze
         public int PlayerCol => playerCol;
 
 
@@ -52,7 +56,7 @@ namespace AdventureGame.Core.Engine
             PlaceStuff();
         }
 
-        // handles player movement
+        // handles player movement and interactions after each move
         public MoveResult Move(string input)
         {
             // makes sure input was valid
@@ -71,6 +75,8 @@ namespace AdventureGame.Core.Engine
             int newRow = playerRow;
             int newCol = playerCol;
 
+
+            // Changes the target row or column based on input
             if (input == "W") newRow--;
             else if (input == "S") newRow++;
             else if (input == "A") newCol--;
@@ -147,6 +153,8 @@ namespace AdventureGame.Core.Engine
 
                 maze.SetTile(playerRow, PlayerCol, EMPTY);
 
+
+                // Returns a default success message when move does not trigger something else
                 return new MoveResult
                 {
                     Moved = true,
@@ -167,11 +175,14 @@ namespace AdventureGame.Core.Engine
             PlaceRandom(POTION, 4);
         }
 
+
+        // Randomly places a specific tile in empty space
         private void PlaceRandom(char thing, int count)
         {
             int placed = 0;
             int tries = 0;
 
+            // Keeps trying random positions until requested number of tiles is placed
             while (placed < count && tries < 5000)
             {
                 tries++;
@@ -179,8 +190,11 @@ namespace AdventureGame.Core.Engine
                 int r = rng.Next(1, maze.Height - 1);
                 int c = rng.Next(1, maze.Width - 1);
 
+                // Skips the starting postion
                 if (r == 1 && c == 1) continue;
+                // Skips the exit tile
                 if (maze.IsExit(r, c)) continue;
+                // Only places tile in an empty space
                 if (maze.GetTile(r, c) == EMPTY)
                 {
                     maze.SetTile(r, c, thing);
@@ -197,6 +211,8 @@ namespace AdventureGame.Core.Engine
             Monster monster = new Monster("Monster", monsterHp);
             while (monster.Health > 0 && player.Health > 0)
             {
+
+                // Player attacks first using their base attack plus the best weapon modifier
                 int playerDamage = BASE_DAMAGE + bestWeaaponModifier;
                 monster.TakeDamage(playerDamage);
 
@@ -208,6 +224,8 @@ namespace AdventureGame.Core.Engine
                         Message = "You defeated the monster"
                     };
                 }
+                // Monster counterattacks if it survives
+                int monsterDamage = monster.Attack(player);
                 player.TakeDamage(BASE_DAMAGE);
                 if (player.Health <= 0)
                 {
@@ -219,7 +237,7 @@ namespace AdventureGame.Core.Engine
                     };
                 }
             }
-
+            // Fallback result if the loop exits unexpectedly 
             return new MoveResult { Moved = true, Message = "Battle ended" };
 
         }

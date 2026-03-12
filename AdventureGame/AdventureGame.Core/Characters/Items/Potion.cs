@@ -7,8 +7,11 @@ using AdventureGame.Core.Characters;
 
 namespace AdventureGame.Core.Items;
 
+// Represents a potion item that restores health 
 public class Potion:Item
 {
+
+    // Amount of health a potion restores
     public int HealAmount;
 
     // Creates a potion and sets how much health it restores
@@ -19,6 +22,7 @@ public class Potion:Item
         HealAmount = healAmount;
     }
 
+    // Applies the potion effect a restores health
     public override void Apply(Player player)
     {
         player.Heal(HealAmount);

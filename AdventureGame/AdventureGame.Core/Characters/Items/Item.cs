@@ -22,9 +22,10 @@ public abstract class Item
    
             {       
             Name = name;
-            Symbol = Symbol;
+            Symbol = symbol;
             PickupMessage = message;
             }
 
+    // Applies the effect of item to the player when picked up
     public abstract void Apply(Player player);
 }

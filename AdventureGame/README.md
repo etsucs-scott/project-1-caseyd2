@@ -1,13 +1,13 @@
-Adventure Game
+# Adventure Game
 
 
-How to run:
+## How to run:
 
-Open AdventureGame.sln in VS. Make sure AdventureGame.Cli is selected. Press Run
+Open AdventureGame.sln in VS. Make sure AdventureGame.Cli is selected as the startup project. Press Run
 
 
 
-Controls:
+## Controls:
 
 W = Up
 S = Down
@@ -15,7 +15,12 @@ A = Left
 D = Right
 
 
-Symbols:
+## Display Format:
+ 
+The maze redraws after every move. They game shows the maze, your HP, and a message after each turn.
+
+
+## Symbols:
 
 # = Wall
 @ = Player
@@ -25,38 +30,26 @@ W = Weapon (increases attack)
 E = Exit
 
 
-
-Display:
-
-The game shows the maze, your HP, and a message after each move you make. 
-
-
-
-Win and Lose:
+## Win and Lose:
 
 You win by reaching the exit. You lose if your HP reaches 0.
 
-
-
-Battles:
+## Battles:
 
 If you move onto a monster, a battle begins. Both the player and the monster lose HP.
 If the monster reaches 0 HP, it dies. If the player reaches 0 HP, the game is over.
 
 
-
-UML Diagram:
-
-The UML diagram shows each class and how they link together. 
-
+## UML Diagram:
+UML FILE: 'Dawson Casey UML Project 1(2).pdf'
+The UNL diagram shows the required classes, inheritance, interface implementation, and relationships used in the project.
 
 
-Clone: 
+## Git Clone: 
 https://github.com/etsucs-scott/project-1-caseyd2.git
 
-
-Build:
+## Build:
 dotnet build
 
-Run:
-dotnet run --project AdventureGame.Cli
+## Run:
+dotnet run --project src/AdventureGame.Cli

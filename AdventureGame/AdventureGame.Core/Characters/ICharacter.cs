@@ -20,6 +20,7 @@ namespace AdventureGame.Core.Characters
         // Maximun health
         int MaxHealth { get; }  
 
+        // Attacks another character and return damage dealt 
         int Attack (ICharacter target);
 
         // Takes damage and lowers health
